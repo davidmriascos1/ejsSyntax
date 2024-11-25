@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EJS Tags</title>
+</head>
+
+<body>
+   <h1>
+    <%# This syntax "< % =" make the code be interpreted as JS and let you show to browser what is in the JS index  %>
+    <%=  title  %>
+  </h1> 
+  <p>Current second:
+    <%# Same as above this is interpreted as JS code and bring whatever is in JS index file. in this case the seconds of the new Date(); %>
+     <%= seconds %> 
+  </p>
+  <%# the syntax "< % " make the code be interpreted as JS but doesn't render to the browser. You must use it in each line of JS code %>
+  <% if (seconds % 2===0) {%>
+  <ul>
+    <%# the syntax "< % " make the code be interpreted as JS but doesn't render to the browser. You must use it in each line of JS code %>
+    <% for (let i = 0; i<items.length; i++) { %>
+  <%# here we actually need to render this to the user interface so we change the syntax again to "< % = " %>
+    <li><%= items[i] %></li>
+    <%# the syntax "< % " make the code be interpreted as JS but doesn't render to the browser. You must use it in each line of JS code %>
+    <% } %>
+  </ul>
+  <%# the syntax "< % " make the code be interpreted as JS but doesn't render to the browser. You must use it in each line of JS code %>
+  <%} else {%>
+    <p>No items to display</p>
+    <%# the syntax "< % " make the code be interpreted as JS but doesn't render to the browser. You must use it in each line of JS code %>
+    <% }%>
+  <p> 
+    <%# this syntax "< % - " render the html written in "" in the  index js file in this case  "<strong>This is some strong text</strong>"  %>
+    <%- htmlContent  %> 
+  </p>
+ <%# This syntax with the word "include" help you copy and paste headers or footers or whatever you want to be render in all the pages 
+  you need to add each file in the views folder separate from the other ejs files   %>
+   <%-include ("footer.ejs")  %>
+</body>
+
+</html>
